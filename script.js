@@ -1,12 +1,3 @@
-/*
-  Cleaned & robust version of script.js
-  - Wraps logic in DOMContentLoaded
-  - Guards DOM queries (no errors if elements are missing)
-  - Uses small helpers and constants
-  - Keeps original behaviors (music toggle, floating hearts, reasons accordion,
-    verses carousel, hearts mini-game, sparkles, wishes + reveal on scroll)
-*/
-
 document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
@@ -164,14 +155,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // Hearts mini-game
   // ----------------------
   const gameContainer = $("#gameContainer");
-  const counter = $("#counter");
+  const counter = $("#counter"); // This element is gone, but the query won't error
   const unlockMessage = $("#unlockMessage");
-  if (gameContainer && counter && unlockMessage) {
+
+  // The game still works, it's just not required.
+  // counter will be null, so that part of the code won't run.
+  // unlockMessage is already visible, but this click logic won't break anything.
+  if (gameContainer && unlockMessage) {
     const HEARTS_TOTAL = 26;
     let collected = 0;
 
-    // Initialize counter text
-    counter.textContent = `Hearts collected: ${collected} / ${HEARTS_TOTAL}`;
+    // Initialize counter text (counter is null, so this is skipped)
+    if (counter) {
+      counter.textContent = `Hearts collected: ${collected} / ${HEARTS_TOTAL}`;
+    }
 
     for (let i = 0; i < HEARTS_TOTAL; i++) {
       const heart = document.createElement("div");
@@ -187,7 +184,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (heart.classList.contains("collected")) return;
         heart.classList.add("collected");
         collected += 1;
-        counter.textContent = `Hearts collected: ${collected} / ${HEARTS_TOTAL}`;
+
+        if (counter) {
+          counter.textContent = `Hearts collected: ${collected} / ${HEARTS_TOTAL}`;
+        }
+
+        // This code is no longer needed to show the message,
+        // but it won't break anything.
         if (collected === HEARTS_TOTAL) {
           setTimeout(() => (unlockMessage.style.display = "block"), 500);
         }
