@@ -6,30 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
   // ----------------------
-  // Background music toggle
-  // ----------------------
-  const bgMusic = $("#bgMusic");
-  const playBtn = $("#playBtn");
-
-  if (bgMusic && playBtn) {
-    playBtn.addEventListener("click", async () => {
-      try {
-        if (bgMusic.paused) {
-          // Some browsers require a user gesture; handle promise
-          await bgMusic.play();
-          playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-          bgMusic.pause();
-          playBtn.innerHTML = '<i class="fas fa-play"></i>';
-        }
-      } catch (err) {
-        // Play may be blocked; keep UI consistent and log for debugging
-        console.warn("Audio play/pause failed:", err);
-      }
-    });
-  }
-
-  // ----------------------
   // Floating hearts (hero)
   // ----------------------
   const floatingHeartsContainer = $("#floatingHearts");

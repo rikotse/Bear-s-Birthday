@@ -581,32 +581,6 @@ section {
   }
 }
 
-/* --- Shared Components (Audio Player, Nav) --- */
-
-/* Audio Player (UI/UX Fix) */
-.audio-player {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: white;
-  border-radius: 50%;
-  padding: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-}
-
-.audio-btn {
-  background: none;
-  border: none;
-  color: var(--accent-deep-purple);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 4px;
-  line-height: 1;
-}
-
 /* Navigation (Wishes Page) */
 .nav-btn {
   position: fixed;
